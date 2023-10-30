@@ -1,35 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
+  const [depth, setDepth] = useState("");
+
+  const changeUnit = (value, unit) => {
+    console.log("Change Unit Called:", value)
+    if (unit === "width") { setWidth(value.target.value); }
+    if (unit === "height") {
+      setHeight(value.target.value);
+    }
+    if (unit === "depth") {
+      setDepth(value.target.value);
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Universal Journalist Unit Calculator</h1>
+      <label>
+        Height:
+        <input type="number" name="height" value={height} onChange={e => changeUnit(e, "height")} />
+      </label>
+      <label>
+        Width:
+        <input type="number" name="width" value={width} onChange={e => changeUnit(e, "width")} />
+      </label>
+      <label>
+        Depth:
+        <input type="number" name="depth" value={depth} onChange={e => changeUnit(e, "depth")} />
+      </label>
+      <p>You need to write almost one to begin</p>
     </>
-  )
+  );
 }
 
 export default App
